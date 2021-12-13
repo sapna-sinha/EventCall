@@ -70,7 +70,7 @@ let mail = document.getElementsByName("mail")[0]
 let pass = document.getElementsByName("pass")[0]
 
 let regbtn = document.getElementById("reg-btn").addEventListener('click', () => {
-  fetch("http://localhost:4000/register", {
+  fetch("https://eventcallback.herokuapp.com/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -96,7 +96,7 @@ let password = document.getElementsByName("password")[0]
 // btn.src= data.link 
 
 let logbtn = document.getElementById("login-btn").addEventListener('click', () => {
-  fetch("http://localhost:4000/login", {
+  fetch("https://eventcallback.herokuapp.com/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -114,7 +114,7 @@ let logbtn = document.getElementById("login-btn").addEventListener('click', () =
 })
 
 const admin = ()=>{
-  fetch("http://localhost:4000/admin", {
+  fetch("https://eventcallback.herokuapp.com/admin", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
