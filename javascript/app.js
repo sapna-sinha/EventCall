@@ -81,7 +81,7 @@ let regbtn = document.getElementById("reg-btn").addEventListener('click', () => 
   }).then(response => response.json())
   .then(res =>{
     if (res.success) {
-      window.location.href = `${window.location.origin}/src/mainPage.html`
+      window.location.href = `${window.location.origin}/mainPage.html`
     }
     else{
       alert("This email is already existing")
@@ -108,7 +108,7 @@ let logbtn = document.getElementById("login-btn").addEventListener('click', () =
     if (res.success) {
       localStorage.setItem('email',username.value)
       console.log("done")
-      window.location.href = `${window.location.origin}/src/mainPage.html`
+      window.location.href = `${window.location.origin}/mainPage.html`
     }
   })
 })
