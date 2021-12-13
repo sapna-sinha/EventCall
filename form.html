@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Form</title>
+    <link rel = "shortcut icon" type="image/ico" href="assets/favicon.ico">;
+    <link rel = "stylesheet" href="./styles/form.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Event Details</h1>
+        <p>Lets get your event live!</p>
+          <form action="http://localhost:4000/addevent" method="POST" id="my-form">
+      
+            <div class="form-group">
+              <label for="eventname">Event Name<span>*</span></label>
+              <input type="text" id="eventname" name="eventname" placeholder="Your eventname here" required>
+            </div>
+      
+            <div class="form-group">
+              <label for="organisation">Organisation Name<span>*</span></label>
+              <input type="text" id="organisation" name="organisation" placeholder="Your organisation here" required>
+            </div>
+      
+            <div class="form-group">
+              <label for="email">Contact Email<span>*</span></label>
+              <input type="email" id="email" name="email" placeholder="Your Email here" required>
+            </div>
+
+            <div class="form-group">
+              <label for="Event participation Link">Event Participation Link<span>*</span></label>
+              <input type="url" accept="link" id="link" name="link" placeholder="Give link for event participation" required>
+            </div>
+      
+            <div class="form-group">
+              <label for="description">Event Description<span>*</span></label>
+              <textarea name="description" id="description" cols="30" rows="8"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="Event Poster">Event Poster</label>
+                <input type="file" accept="image/*" id="poster" name="poster" placeholder="Event Poster">
+              </div>
+      
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+</body>
+</html>

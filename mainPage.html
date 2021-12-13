@@ -1,0 +1,191 @@
+<!-- main page  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Call</title>
+    <link rel = "shortcut icon" type="image/ico" href="assets/favicon.ico">;
+    <link rel = "stylesheet" href="./styles/mainPage.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<body>
+    <header style="background:rgb(48, 48, 48)">
+        <a href="#" class="logo">EventCall<span>.</span></a>
+        <ul class="navigation">
+            <li><a href="#banner">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#footer">Contact</a></li>
+            <li><a href="./login.html" target="_blank">Sign In</a></li>
+        </ul>
+    </header>
+    <section class = "banner" id="banner">
+        <div class = "content">
+            <h2><i>Stay connected</i></h2>
+                <p><i>Life is an event. Make it a memorable one.</i></p>
+        </div>
+    </section>
+
+
+    <!-- about section  -->
+    <section class="about" id="about">
+        <div class = "row">
+            <div class= "col50">
+                <h2 class="titletext"><span>A</span>bout Us</h2>
+                <p>EventCall is a college event management platform where one can discover upcoming event and participate to showcase their true potential. Our job is to keep you update with all the information of the event and answer your queries. So, what are you waiting for...<span><i>Go Ahead and participate !!</i></span> </p>
+            </div>
+      
+        <div class = "col50">
+            <div class ="imgBx">
+                <img src="assets/main2.png">
+            </div>
+        </div>
+
+        </div>
+    </section>
+
+    <!-- event list  -->
+    <section class = "menu" id = "menu">
+        <div id="event-cont" class="container">
+            <div>
+                <h6 class="titletext" id="event">Events</h6>
+                <a id="btn-1" style="display: none; right: 2px; bottom: 2px;" href="./form.html" target="_blank"><button class ="btn" >Add Event</button></a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- queries  -->
+
+    <section id="queries">
+        
+        <div class="container">
+        <h1>GET IN TOUCH</h1>
+        <p>Have any questions or suggestions? Drop us a mesaage</p>
+          <form action="https://formspree.io/f/mdobnbyp" method="POST" id="my-form">
+      
+            <div class="form-group">
+              <label for="firstName"> First Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Your Firstname here">
+            </div>
+      
+            <div class="form-group">
+              <label for="latsName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Your Lastname here">
+            </div>
+      
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Your Email here" required>
+            </div>
+      
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea name="message" id="message" cols="30" rows="10"></textarea>
+            </div>
+      
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <div id="status"></div>
+      </section>
+
+
+<!-- footer section  -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <img src="assets/pic1.png">
+                    <ul>
+                        <li><a href="https://manavrachna.edu.in/aboutus/">about us</a></li>
+                        <li><a href="https://manavrachna.edu.in/ptb-search/?f=course_search">our services</a></li>
+                        <li><a href="https://manavrachna.edu.in/contactus/">privacy policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>get help</h4>
+                    <ul>
+                        <li><a href="https://manavrachna.edu.in/">FAQ</a></li>
+                        <li><a href="#">payment options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/MRIIRSUniversityFaridabad/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/manav_rachna?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/manav_rachna/?hl=en"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/manav-rachna-educational-institutions/?originalSubdomain=in"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </footer>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            let button = document.getElementById('btn-1');
+            fetch("http://localhost:4000/admin", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      
+      email: localStorage.getItem('email'),
+    
+    }),
+  }).then(response => response.json())
+  .then(res =>{
+    if (res.success) {
+    
+    
+     console.log(button)
+    //  button.style.display = 'fixed';
+    button.setAttribute('style','display:fixed !important')
+    }
+  }) 
+            fetch("http://localhost:4000/getevents").then(res=>res.json()).then(val=>{
+                if(val.success) { 
+                    let eventdiv = document.getElementById("event-cont");
+                    val.data.map((data)=>{
+                        let div = document.createElement("div");
+                        let childdiv = document.createElement("div");
+                        let img  = document.createElement("img");
+                        let h2 = document.createElement("h2");
+                        let p = document.createElement("p");
+                        let a = document.createElement("a");
+                        let btn = document.createElement("btn");
+                       
+                        div.classList.add("event");
+                        childdiv.classList.add("preview");
+                        btn.classList.add("btn");
+
+                        h2.innerHTML=data.name;
+                        p.innerHTML=data.organisation;
+                        btn.textContent = "Participate Now";
+                        img.src = `assets/head1.jpg`
+                        a.href = data.link
+                        // a.href = "./event.html"
+                        a.target = "_blank"
+
+                        childdiv.appendChild(img);
+                        a.appendChild(btn);
+                        div.appendChild(childdiv);
+                        div.appendChild(h2);
+                        div.appendChild(p);
+                        div.appendChild(a);
+                        eventdiv.appendChild(div);
+                    })
+                }
+            }).catch((error) => console.log(error))
+        };
+        window.addEventListener('scroll', function(){
+            const header = documnet.querySelector('header');
+            header.classList.toggle("sticky", window.scrollY > 0);
+        });
+        // admin();
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
