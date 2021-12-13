@@ -127,7 +127,7 @@
     <script type="text/javascript">
         window.onload = function() {
             let button = document.getElementById('btn-1');
-            fetch("http://localhost:4000/admin", {
+            fetch("https://eventcallback.herokuapp.com/admin", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -145,7 +145,7 @@
     button.setAttribute('style','display:fixed !important')
     }
   }) 
-            fetch("http://localhost:4000/getevents").then(res=>res.json()).then(val=>{
+            fetch("https://eventcallback.herokuapp.com/getevents").then(res=>res.json()).then(val=>{
                 if(val.success) { 
                     let eventdiv = document.getElementById("event-cont");
                     val.data.map((data)=>{
